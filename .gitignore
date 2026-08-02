@@ -1,0 +1,3 @@
+# Never commit local settings backups produced by the installers
+settings.json.backup.*
+*.backup.*
