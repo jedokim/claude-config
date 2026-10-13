@@ -1,3 +1,9 @@
+This is Claude Code opened from my MacBook Pro M4 Max on the root level of my terminal (I ran "cd .." multiple times). 
+
+On my Mac Mini (different computer), I've customized my statusline perfectly to how I want it.
+I got a Claude agent on my Mac Mini to create a prompt to help you set the statusline up so that it is identical to the config that I have on my other computer. It's been a while since I've used Claude Code on this computer so I don't know if I have an existing statusline configuration. Check out how the statusline is currently configured on this computer (if at all), and then check out the prompt below that I had the other AI agent create so that I can also have the same statusline on my Claude Code cli here.
+
+Prompt:
 Set up my Claude Code status line at the USER (personal) level, exactly matching my other Mac. Do not touch any project-level settings. Steps:
 
 1. Create `~/.claude/statusline.sh` with EXACTLY the content below (byte-for-byte, including the emojis 📁 🌿 🧠 ⚠️ and the `\033[33m` ANSI escapes). If the file already exists, back it up to `~/.claude/statusline.sh.bak` first. Write it with a quoted heredoc (`<<'EOF'`) so nothing gets expanded. The original file has NO trailing newline after the final `"$warn"` line, but a heredoc adds one, so strip it afterwards: `printf '%s' "$(cat ~/.claude/statusline.sh)" > /tmp/sl && mv /tmp/sl ~/.claude/statusline.sh`. Then `chmod +x ~/.claude/statusline.sh`.
