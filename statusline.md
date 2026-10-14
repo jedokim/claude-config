@@ -36,7 +36,9 @@ left_display="$((left_raw / 1000))k"
 branch_segment=""
 if [ -f .git/HEAD ]; then
     read -r ref < .git/HEAD
-    branch=${ref##*/}
+    branch=${ref#ref: refs/heads/}
+    # Detached HEAD (rebase, bisect): show a short commit hash instead of all 40 chars
+    [ "$branch" = "$ref" ] && branch=${ref:0:7}
     branch_segment=" | 🌿 $branch"
 fi
 
@@ -59,7 +61,7 @@ printf "[\033[33m%s\033[0m] 📁 %s%s | 🧠 Context-used: %s%% (%s) | Context-l
 ```
 
 2. Verify the file is identical to the original: `shasum -a 256 ~/.claude/statusline.sh` must print
-   `dbb8c940c8887d786494441c38a798a8572173f24f6c33370117c27a19168568`
+   `871980c5beec4f7b452d919be172413b2f3f74002c677cf5112c33a7e6f44696`
    If it doesn't match, the prompt was probably mangled when I copied it over (e.g. an emoji or a line got altered). Don't try to "fix" the script by guessing. Stop, tell me the hash didn't match, and point out anything in the code block above that looks truncated or garbled.
 
 3. Make sure `jq` is available (`which jq`). Recent macOS ships it at `/usr/bin/jq`; if it's missing, install it with `brew install jq`.
